@@ -1,26 +1,26 @@
-const form = document.forms[0]
-form.addEventListener("submit", submitFunc, false)
+const form = document.forms[0];
+form.addEventListener("submit", submitFunc);
 function submitFunc(e) {
-    // e.preventDefault();
-    const loginDetails = {}
+    e.preventDefault();
+    const url = form.action;
+    const loginDetails = {};
     loginDetails.email = form.useremail.value;
-    loginDetails.password = form.userpassword.value
-    fetch("http://127.0.0.1:8080/processpost", {
+    loginDetails.password = form.userpassword.value;
+    console.log(loginDetails);
+    fetch(url, {
         body: JSON.stringify(loginDetails),
         method: "POST",
         mode: "no-cors",
         headers: {
             "Content-Type": "application/json",
         }
-        }
-        ).then(response => {
-            if(response.ok){console.log("success")
-        } else{
-            console.log("error");
-        }
         })
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => {
             console.log(data);
-        });
+            // alert("success")
+        }).catch(error => {
+            console.log(error);
+            alert("error")
+        })
     }
