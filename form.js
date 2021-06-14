@@ -5,8 +5,6 @@ function submitFunc(e) {
     const loginDetails = {}
     loginDetails.email = form.useremail.value;
     loginDetails.password = form.userpassword.value
-    alert(JSON.stringify(loginDetails))
-    console.log(JSON.stringify(loginDetails));
     fetch("http://127.0.0.1:8080/processpost", {
         body: JSON.stringify(loginDetails),
         method: "POST",
